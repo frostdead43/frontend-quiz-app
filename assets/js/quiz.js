@@ -420,7 +420,7 @@ let accesTopic = questionArray.quizzes[3].title;
 const htmlq = questionArray.quizzes[0].questions;
 const cssq = questionArray.quizzes[1].questions;
 const jsq = questionArray.quizzes[2].questions;
-const accessq = questionArray.quizzes[3].questions;;
+const accessq = questionArray.quizzes[3].questions;
 
 const firstBtns = document.querySelectorAll(".main-btns");
 const mainArea = document.querySelector(".first-area");
@@ -444,10 +444,17 @@ function handleBtn(e) {
   else if (topic === "Javascript") selectedQuiz = jsq;
   else if (topic === "Accessibility") selectedQuiz = accessq;
 
-  console.log("Selected Quiz:", selectedQuiz);
   currentQuestionIndex = 0;
   getQuestions();
 }
+
+// document.querySelectorAll("a").forEach((link) => {
+//     link.addEventListener("click", (e) => {
+//       e.preventDefault(); /
+//     });
+//   });
+
+
 function btnmove() {
   firstBtns.forEach((btn) => {
     btn.addEventListener("click", handleBtn);
@@ -471,35 +478,54 @@ function getQuestions() {
         
         <div class="question-selection">
           <span>A</span>
-          <a href="">${currentQuestion.options[0]}</a>
+          <a href="" class= "asd">${currentQuestion.options[0]}</a>
         </div>
 
         <div class="question-selection">
           <span>B</span>
-          <a href="">${currentQuestion.options[1]}</a>
+          <a href="" class= "asd">${currentQuestion.options[1]}</a>
         </div>
 
         <div class="question-selection">
           <span>C</span>
-          <a href="">${currentQuestion.options[2]}</a>
+          <a href="" class= "asd">${currentQuestion.options[2]}</a>
         </div>
 
         <div class="question-selection">
           <span>D</span>
-          <a href="">${currentQuestion.options[3]}</a>
+          <a href="" class= "asd">${currentQuestion.options[3]}</a>
         </div>
 
         <button class="submit-btn">Submit Answer</button>
+        
     `
+    document.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+        });
+      });
+
+      document.querySelectorAll("button").forEach((link) => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+        });
+      });
+    
+  const deneme = document.querySelectorAll(".asd");
+  console.log(deneme);
+  console.log(questionArea);
   mainArea.style.display = "none";
   questionArea.style.display = "block";
+ 
 }
 
 
 
-  
-
-
+function nextQuestion() {
+  questionIndex++;
+  getQuestions();
+  console.log(questionArea);
+}
 
 
 

@@ -17,16 +17,16 @@ const questionArray = {
               {
                   "question": "Which of the following is the correct structure for an HTML document?",
                   "options": [
-                      "<html><head></head><body></body></html>",
-                      "<head><html></html><body></body></head>",
-                      "<body><head></head><html></html></body>",
-                      "<html><body></body><head></head></html>"
+                      'html head /head body /body /html',
+                      'head html /html body /body /head',
+                      'body head /head html /html /body',
+                      'html body /body head /head /html'
                   ],
-                  "answer": "<html><head></head><body></body></html>"
+                  "answer": 'html head /head body /body /html'
               },
               {
                   "question": "Which HTML element is used to define the title of a document?",
-                  "options": ["<head>", "<title>", "<header>", "<top>"],
+                  "options": ["head", "title", "header", "top"],
                   "answer": "<title>"
               },
               {

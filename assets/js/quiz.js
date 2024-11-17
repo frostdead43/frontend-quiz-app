@@ -411,6 +411,7 @@ console.log(questionArray);
 
 let score = 0;
 let selectedQuiz = [];
+let selectedOption = null;
 let htmlTopic = questionArray.quizzes[0].title;
 let cssTopic = questionArray.quizzes[1].title;
 let jsTopic = questionArray.quizzes[2].title;
@@ -425,7 +426,8 @@ const accessq = questionArray.quizzes[3].questions;
 const firstBtns = document.querySelectorAll(".main-btns");
 const mainArea = document.querySelector(".first-area");
 const questionArea = document.querySelector(".question-area");
-let questionNumber = 0; 
+let questionIndex = 0;
+
 
 console.log(firstBtns);
 
@@ -442,8 +444,7 @@ function handleBtn(e) {
   else if (topic === "HTML") selectedQuiz = htmlq;
   else if (topic === "Javascript") selectedQuiz = jsq;
   else if (topic === "Accessibility") selectedQuiz = accessq;
-
-  currentQuestionIndex = 0;
+  questionIndex = 0;
   getQuestions();
 }
 
@@ -463,9 +464,6 @@ btnmove();
 
 
 
-
-
-let questionIndex = 0;
 
 function getQuestions() {
   const currentQuestion = selectedQuiz[questionIndex];
@@ -500,41 +498,73 @@ function getQuestions() {
         <button class="submit-btn">Submit Answer</button>
         
     `
-    document.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-        });
-      });
-
-      const submitBtn = document.querySelector(".submit-btn");
-      console.log(submitBtn);
-      document.querySelectorAll("button").forEach((link) => {
-        link.addEventListener("click", (e) => {
-          e.preventDefault();
-        });
-      });
     
-  const deneme = document.querySelectorAll(".asd");
-  console.log(deneme);
-  console.log(questionArea);
-  mainArea.style.display = "none";
-  questionArea.style.display = "block";
-  console.log(submitBtn);
+    
+    mainArea.style.display = "none";
+    questionArea.style.display = "block";
+    selectedOption = null;
+
+    selectOption();
+    setupSubmit();
+
+}
+
+function selectOption() {
+  const options = document.querySelectorAll(".asd");
+  for (const option of options) {
+    option.addEventListener("click", function (e) {
+        e.preventDefault();
+        selectedOption = e.target.innerText;
+        for (const opt of options) {
+            opt.classList.remove("selected"); 
+        }
+        option.classList.add("selected");
+    });
+  }
 }
 
 
 
+function setupSubmit() {
+  const submitBtn = document.querySelector(".submit-btn");
+  submitBtn.addEventListener("click", function(e)  {
+    e.preventDefault();
 
+    const correctAnswer = selectedQuiz[questionIndex].answer;
+    
+    if (selectedOption === correctAnswer) {
+      score++;
+    }
+    questionIndex++;
 
-
-function nextQuestion() {
-  questionIndex++;
-  getQuestions();
-  console.log(questionArea);
+    if (questionIndex < selectedQuiz.length) {
+      getQuestions(); 
+    } else {
+      showResults(); 
+    }
+  });
 }
 
-
-
+function showResults() {
+  questionArea.innerHTML = `
+    <p class="result-p">Quiz completed</p>
+    <p class="result-strong"><strong>You scored...</strong></p>
+    <div class="result-point">
+      <div class="result-flex">
+        <img src="assets/images/accessibility-icon.svg">
+        <p class="end-title">Accessibility</p>
+      </div>
+      <h1 class="end-score">${score}</h1>
+      <span class="end-total">out of 10</span>
+    </div>
+    <a href="" class="end-btn">Play Again</a>
+  `;
+  
+  const restartBtn = document.querySelector(".end");
+  restartBtn.addEventListener("click",function() {
+    location.reload();
+  });
+}
 
 // const progressBar = document.querySelector('.progressBarInner');
 // let progress = 4;

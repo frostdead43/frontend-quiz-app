@@ -230,8 +230,76 @@ a {
   line-height: 18px;
   border-radius: 12px;
   border: none;
+  display: block;
+  width: 327px;
 }
 
 
+/* result */
 
+.result-p {
+  color: rgba(49, 62, 81, 1);
+  font-size: 40px;
+  font-weight: 300;
+  line-height: 40px;
+  text-align: left;
+}
 
+.result-strong {
+  color: rgba(49, 62, 81, 1);
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 40px;
+  text-align: left;
+}
+
+.result-point {
+  margin-top: 83px;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 1);
+  padding: 32px;
+}
+
+.result-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.result-point p {
+  color: rgba(49, 62, 81, 1);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+}
+
+.result-point h1 {
+  color: rgba(49, 62, 81, 1);
+  font-size: 88px;
+  font-weight: 500;
+  line-height: 88px;
+  margin-block: 16px;
+}
+
+.result-point span {
+  color: rgba(98, 108, 127, 1);
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 18px;
+}
+
+.end-btn {
+  background-color: rgba(167, 41, 245, 1);
+  color: white;
+  padding-block: 18px;
+  width: 327px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+  display: block;
+  border-radius: 12px;
+  border: none;
+  margin-top: 12px;
+}

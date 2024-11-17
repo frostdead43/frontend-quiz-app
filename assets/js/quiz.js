@@ -425,7 +425,6 @@ const accessq = questionArray.quizzes[3].questions;
 const firstBtns = document.querySelectorAll(".main-btns");
 const mainArea = document.querySelector(".first-area");
 const questionArea = document.querySelector(".question-area");
-const submitBtn = document.querySelector(".submit-btn")
 let questionNumber = 0; 
 
 console.log(firstBtns);
@@ -461,6 +460,8 @@ function btnmove() {
   });  
 }
 btnmove();
+
+
 
 
 
@@ -505,6 +506,8 @@ function getQuestions() {
         });
       });
 
+      const submitBtn = document.querySelector(".submit-btn");
+      console.log(submitBtn);
       document.querySelectorAll("button").forEach((link) => {
         link.addEventListener("click", (e) => {
           e.preventDefault();
@@ -516,8 +519,11 @@ function getQuestions() {
   console.log(questionArea);
   mainArea.style.display = "none";
   questionArea.style.display = "block";
- 
+  console.log(submitBtn);
 }
+
+
+
 
 
 

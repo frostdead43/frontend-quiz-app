@@ -468,7 +468,7 @@ btnmove();
 function getQuestions() {
   const currentQuestion = selectedQuiz[questionIndex];
     questionArea.innerHTML = `
-     <p>Question <span id = "questionNumber">1</span> of 10</p>
+     <p>Question <span id = "questionNumber">${questionIndex+1}</span> of 10</p>
      
         <h3>${currentQuestion.question}</h3>
         <div class="progressBar">

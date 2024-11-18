@@ -234,10 +234,14 @@ a {
   width: 327px;
 }
 
+.asd {
+  padding: 12px;
+}
+
 
 /* result */
 
-.result-p {
+.result-area p {
   color: rgba(49, 62, 81, 1);
   font-size: 40px;
   font-weight: 300;
@@ -245,16 +249,13 @@ a {
   text-align: left;
 }
 
-.result-strong {
+.result-area strong {
   color: rgba(49, 62, 81, 1);
   font-size: 40px;
   font-weight: 500;
-  line-height: 40px;
-  text-align: left;
 }
 
 .result-point {
-  margin-top: 83px;
   text-align: center;
   background-color: rgba(255, 255, 255, 1);
   padding: 32px;

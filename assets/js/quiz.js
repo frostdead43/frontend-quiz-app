@@ -116,7 +116,7 @@ const questionArray = {
                       "// this is a comment //",
                       "/* this is a comment */",
                       "-- this is a comment --",
-                      "<!-- this is a comment -->"
+                      "!-- this is a comment --"
                   ],
                   "answer": "/* this is a comment */"
               },
@@ -349,8 +349,8 @@ const questionArray = {
               },
               {
                   "question": "Which of the following elements is inherently focusable, meaning it can receive focus without a 'tabindex' attribute?",
-                  "options": ["<div>", "<span>", "<a href='...'>", "<p>"],
-                  "answer": "<a href='...'>"
+                  "options": ["div", "span", "a href='...'", "p"],
+                  "answer": "a href='...'"
               },
               {
                   "question": "What is the purpose of the 'lang' attribute in an HTML page?",
@@ -499,11 +499,18 @@ function getQuestions() {
         
     `
     
-    
+        // const progressBar = document.querySelector('.progressBarInner');
+        // let progress = 1;
+        // progressBar.style.width = (progress * 10) + '%';
+        // progressBar.style.width = '10';
+        // progress++;
+        
+        
     mainArea.style.display = "none";
     questionArea.style.display = "block";
     selectedOption = null;
 
+    // progressBar();
     selectOption();
     setupSubmit();
 
@@ -537,6 +544,11 @@ function setupSubmit() {
     }
     questionIndex++;
 
+    if (selectedOption === null) {
+        alert("Select an option to proceed");
+        return;
+    }
+
     if (questionIndex < selectedQuiz.length) {
       getQuestions(); 
     } else {
@@ -547,26 +559,31 @@ function setupSubmit() {
 
 function showResults() {
   questionArea.innerHTML = `
-    <p class="result-p">Quiz completed</p>
-    <p class="result-strong"><strong>You scored...</strong></p>
-    <div class="result-point">
-      <div class="result-flex">
-        <img src="assets/images/accessibility-icon.svg">
-        <p class="end-title">Accessibility</p>
+
+    <div class="result-area">
+      <p class="result-p">Quiz completed</p>
+      <p class="result-strong"><strong>You scored...</strong></p>
+      <div class="result-point">
+        <div class="result-flex">
+          <img src="assets/images/accessibility-icon.svg">
+          <p class="end-title">Accessibility</p>
+        </div>
+        <h1 class="end-score">8</h1>
+        <span class="end-total">out of 10</span>
       </div>
-      <h1 class="end-score">${score}</h1>
-      <span class="end-total">out of 10</span>
+      <a href="" class="end-btn">Play Again</a>
     </div>
-    <a href="" class="end-btn">Play Again</a>
   `;
   
-  const restartBtn = document.querySelector(".end");
+  const restartBtn = document.querySelector(".end-btn");
   restartBtn.addEventListener("click",function() {
     location.reload();
   });
 }
 
-// const progressBar = document.querySelector('.progressBarInner');
-// let progress = 4;
-// progressBar.style.width = (progress * 10) + '%';
-// progressBar.style.width = '40%';
+// let progress = 0;
+// function progressBar() {
+//     const progressBar = document.querySelector('.progressBarInner');
+//     progress += 10;
+//     progressBar.style.width = progress + '%';  
+// }

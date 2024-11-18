@@ -40,11 +40,6 @@ const questionArray = {
                   "answer": "It contains all the content such as text, images, and links."
               },
               {
-                  "question": "Which HTML tag is used to create a hyperlink?",
-                  "options": ["<hyperlink>", "<link>", "<a>", "<href>"],
-                  "answer": "<a>"
-              },
-              {
                   "question": "Which tag is used to display images in HTML?",
                   "options": ["<img>", "<image>", "<src>", "<pic>"],
                   "answer": "<img>"
@@ -313,16 +308,6 @@ const questionArray = {
                   "answer": "Web Content Accessibility Guidelines"
               },
               {
-                  "question": "Which element is used to provide alternative text for images for screen reader users?",
-                  "options": [
-                      "<alt>",
-                      "<figcaption>",
-                      "<description>",
-                      "<img alt='description'>"
-                  ],
-                  "answer": "<img alt='description'>"
-              },
-              {
                   "question": "What does ARIA stand for in web development?",
                   "options": [
                       "Accessible Rich Internet Applications",
@@ -510,7 +495,7 @@ function getQuestions() {
     questionArea.style.display = "block";
     selectedOption = null;
 
-    // progressBar();
+    progressBar();
     selectOption();
     setupSubmit();
 
@@ -522,10 +507,6 @@ function selectOption() {
     option.addEventListener("click", function (e) {
         e.preventDefault();
         selectedOption = e.target.innerText;
-        for (const opt of options) {
-            opt.classList.remove("selected"); 
-        }
-        option.classList.add("selected");
     });
   }
 }
@@ -546,7 +527,7 @@ function setupSubmit() {
 
     if (selectedOption === null) {
         alert("Select an option to proceed");
-        return;
+        return null;
     }
 
     if (questionIndex < selectedQuiz.length) {
@@ -568,7 +549,7 @@ function showResults() {
           <img src="assets/images/accessibility-icon.svg">
           <p class="end-title">Accessibility</p>
         </div>
-        <h1 class="end-score">8</h1>
+        <h1 class="end-score">${score}</h1>
         <span class="end-total">out of 10</span>
       </div>
       <a href="" class="end-btn">Play Again</a>
@@ -581,9 +562,15 @@ function showResults() {
   });
 }
 
-// let progress = 0;
-// function progressBar() {
-//     const progressBar = document.querySelector('.progressBarInner');
-//     progress += 10;
-//     progressBar.style.width = progress + '%';  
-// }
+let progress = -1;
+function progressBar() {
+    const progressBar = document.querySelector('.progressBarInner');
+    progress += 10;
+    progressBar.style.width = progress + '%';  
+}
+
+
+    // for (const opt of options) {
+    //     opt.classList.remove("selected"); 
+    // }
+    // option.classList.add("selected");

@@ -220,6 +220,7 @@ a {
   padding-left: 18px;
   width: 327px;
   margin-bottom: 12px;
+  border-radius: 22px;
 }
 
 
@@ -237,9 +238,13 @@ a {
   .bg {
     background-color: rgba(167, 41, 245, 1);
     color: white;
-    border-radius: 6px;
+    
   }
 
+}
+
+.bg {
+  border-radius: 15px;
 }
 
 .submit-btn {

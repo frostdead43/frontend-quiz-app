@@ -241,7 +241,7 @@ const questionArray = {
                   "options": [
                       "'This is a single-line comment",
                       "//This is a single-line comment",
-                      "<!This is a single-line comment>",
+                      "!This is a single-line comment",
                       "/* This is a single-line comment */"
                   ],
                   "answer": "//This is a single-line comment"
@@ -281,16 +281,6 @@ const questionArray = {
                   ],
                   "answer": "var person = {firstName: 'John', lastName: 'Doe'};"
               },
-              {
-                  "question": "What is the correct way to write a JavaScript object?",
-                  "options": [
-                      "var person = {firstName: 'John', lastName: 'Doe'};",
-                      "var person = {firstName = 'John', lastName = 'Doe'};",
-                      "var person = (firstName: 'John', lastName: 'Doe');",
-                      "var person = (firstName = 'John', lastName = 'Doe');"
-                  ],
-                  "answer": "var person = {firstName: 'John', lastName: 'Doe'};"
-              }
           ]
       },
       {
@@ -401,6 +391,7 @@ let selectedOption = null;
 let theme = document.querySelector(".dark-mode");
 const switchBtn = document.querySelector(".switch-area");
 
+
 let htmlTopic = questionArray.quizzes[0].title;
 let cssTopic = questionArray.quizzes[1].title;
 let jsTopic = questionArray.quizzes[2].title;
@@ -416,6 +407,7 @@ const firstBtns = document.querySelectorAll(".main-btns");
 const mainArea = document.querySelector(".first-area");
 const questionArea = document.querySelector(".question-area");
 let makif = null
+
 
 let questionIndex = 0;
 console.log(firstBtns);
@@ -498,6 +490,8 @@ function getQuestions() {
 
         <button class="submit-btn">Submit Answer</button>
 
+        <span class="error-text">Please select an answer</span>
+
     `
 
         // const progressBar = document.querySelector('.progressBarInner');
@@ -543,14 +537,23 @@ function selectOption() {
 
 function setupSubmit() {
   const submitBtn = document.querySelector(".submit-btn");
+  const errorText = document.querySelector(".error-text");
   submitBtn.addEventListener("click", function (e) {
     e.preventDefault();
+
+    if (!selectedOption) {
+      errorText.style.display = "block";
+      return;
+    }
 
     const correctAnswer = selectedQuiz[questionIndex].answer;
 
     const options = document.querySelectorAll(".asd");
     options.forEach((option) => {
       const parentSelection = option.closest(".question-selection");
+
+      
+      
 
       if (option.innerText === correctAnswer) {
         parentSelection.classList.add("correct");
@@ -560,9 +563,10 @@ function setupSubmit() {
       if (selectedOption && option.innerText === selectedOption && selectedOption !== correctAnswer) {
         parentSelection.classList.add("wrong");
       }
+      option.style.pointerEvents = "none";
     });
 
-
+   
     if (selectedOption === correctAnswer) {
       score++;
     }
@@ -571,9 +575,11 @@ function setupSubmit() {
 
 
     if (questionIndex < selectedQuiz.length) {
-      setTimeout(getQuestions, 2000); 
+      setTimeout(() => {
+        getQuestions();
+      }, 2000);
     } else {
-      setTimeout(showResults, 2000);
+      setTimeout(showResults, 2000); 
     }
   });
 }

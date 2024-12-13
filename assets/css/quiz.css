@@ -16,6 +16,7 @@ body {
   font-family: "Rubik", sans-serif;
   max-width: 375px;
   margin-inline: auto;
+  transition: background-color 0.5s ease, color 0.5s ease;
 }
 
 /* 5. Improve media defaults */
@@ -57,6 +58,10 @@ ul, ol {
   list-style: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 header {
   display: flex;
   margin: 16px 24px;
@@ -78,12 +83,12 @@ line-height: 18px;
 
 .switch {
   background-color: rgb(202, 194, 207);
-  width: 32px;
+  width: 35px;
   height: 22px;
   display: inline-flex;
   align-items: center;
   border-radius: 15px;
-  padding: 8px;
+  padding: 2px;
   transition: all .8s ease-in-out;
   appearance: none;
 }
@@ -91,7 +96,7 @@ line-height: 18px;
 .switch:after {
   content: "";
   background-color: white;
-  width: 16px;
+  width: 14px;
   height: 14px;
   border-radius: 50%;
   transition: transform 0.4s cubic-bezier(0.85, 0, 0.15, 1);
@@ -145,6 +150,7 @@ h2 {
   padding-block: 23px;
   padding-left: 18px;
   width: 327px;
+  border-radius: 24px;
 }
 
 a {
@@ -166,6 +172,7 @@ a {
   border-radius: 6px;
   padding: 3px;
   box-sizing: border-box;
+  margin-bottom: 44px;
 }
 
 .progressBarInner {
@@ -212,13 +219,27 @@ a {
   padding-block: 23px;
   padding-left: 18px;
   width: 327px;
+  margin-bottom: 12px;
 }
+
+
 
 .question-selection span {
   color:rgba(98, 108, 127, 1);
   background-color: rgba(244, 246, 250, 1);
   padding: 11px 14px;
   cursor: pointer;
+}
+
+.border {
+  border: 3px solid rgba(167, 41, 245, 1);
+  border-radius: 12px;
+  .bg {
+    background-color: rgba(167, 41, 245, 1);
+    color: white;
+    border-radius: 6px;
+  }
+
 }
 
 .submit-btn {
@@ -236,6 +257,10 @@ a {
 
 .asd {
   padding: 12px;
+}
+
+.correct-answer {
+  border: 3px solid rgba(38, 215, 130, 1);
 }
 
 
@@ -259,6 +284,10 @@ a {
   text-align: center;
   background-color: rgba(255, 255, 255, 1);
   padding: 32px;
+}
+
+.end-title {
+  margin-left: 16px;
 }
 
 .result-flex {
@@ -304,3 +333,59 @@ a {
   border: none;
   margin-top: 12px;
 }
+
+.correct {
+  border: 3px solid green;
+  border-radius: 15px;
+  &::after {
+    content: '✅';
+    margin-left: 0;
+    }
+}
+
+.wrong {
+  border: 3px solid red;
+  border-radius: 15px;
+}
+
+.empty {
+  display: flex;
+  align-items: center;
+  flex-shrink: 1;
+}
+
+/* dark mode */
+
+.dark-mode {
+
+  background: rgba(49, 62, 81, 1);
+
+  .questionNumber {
+    color: rgba(171, 193, 225, 1);
+  }
+
+  .selection {
+    background-color: rgba(59, 77, 102, 1);
+  }
+
+  h2,h3,strong {
+    color: white;
+  }
+  .asd {
+    color: white;
+  }
+
+  .bg {
+    color: white;
+  }
+  
+  .middle-section a {
+    color: white;
+  }
+  p {
+    color: rgba(171, 193, 225, 1);
+  }
+
+}
+
+

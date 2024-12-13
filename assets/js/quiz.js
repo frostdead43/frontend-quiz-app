@@ -17,17 +17,17 @@ const questionArray = {
               {
                   "question": "Which of the following is the correct structure for an HTML document?",
                   "options": [
-                      'html head /head body /body /html',
-                      'head html /html body /body /head',
-                      'body head /head html /html /body',
-                      'html body /body head /head /html'
+                      '&lt;html&gt; &lthead&gt &lt/head&gt &ltbody&gt &lt/body&gt &lt/html&gt',
+                      '&lthead&gt &lthtml&gt &lt/html&gt &ltbody&gt &lt/body&gt &lt/head&gt',
+                      '&ltbody&gt &lthead&gt &lt/head&gt &lthtml&gt &lt/html&gt &lt/body&gt',
+                      '&lthtml&gt &ltbody&gt &lt/body&gt &lthead&gt &lt/head&gt &lt/html&gt'
                   ],
                   "answer": 'html head /head body /body /html'
               },
               {
                   "question": "Which HTML element is used to define the title of a document?",
-                  "options": ["head", "title", "header", "top"],
-                  "answer": "<title>"
+                  "options": ["&lthead&gt", "&lttitle&gt", "&ltheader&gt", "&lttop&gt"],
+                  "answer": "&lttitle&gt"
               },
               {
                   "question": "What is the purpose of the <body> tag in HTML?",
@@ -41,18 +41,18 @@ const questionArray = {
               },
               {
                   "question": "Which tag is used to display images in HTML?",
-                  "options": ["<img>", "<image>", "<src>", "<pic>"],
-                  "answer": "<img>"
+                  "options": ["&ltimg&gt", "&ltimage&gt", "&ltsrc&gt", "&ltpic&gt"],
+                  "answer": "&ltimg&gt"
               },
               {
-                  "question": "What attribute is used to provide the path of an image in the <img> tag?",
+                  "question": "What attribute is used to provide the path of an image in the &ltimg&gt tag?",
                   "options": ["link", "src", "href", "url"],
                   "answer": "src"
               },
               {
                   "question": "Which HTML tag is used to create an unordered list?",
-                  "options": ["<ul>", "<ol>", "<list>", "<li>"],
-                  "answer": "<ul>"
+                  "options": ["&ltul&gt", "&ltol&gt", "&ltlist&gt", "&ltli&gt"],
+                  "answer": "&ltul&gt"
               },
               {
                   "question": "What does the <br> tag do?",
@@ -241,7 +241,7 @@ const questionArray = {
                   "options": [
                       "'This is a single-line comment",
                       "//This is a single-line comment",
-                      "<!--This is a single-line comment-->",
+                      "<!This is a single-line comment>",
                       "/* This is a single-line comment */"
                   ],
                   "answer": "//This is a single-line comment"
@@ -397,6 +397,10 @@ console.log(questionArray);
 let score = 0;
 let selectedQuiz = [];
 let selectedOption = null;
+
+let theme = document.querySelector(".dark-mode");
+const switchBtn = document.querySelector(".switch-area");
+
 let htmlTopic = questionArray.quizzes[0].title;
 let cssTopic = questionArray.quizzes[1].title;
 let jsTopic = questionArray.quizzes[2].title;
@@ -411,15 +415,16 @@ const accessq = questionArray.quizzes[3].questions;
 const firstBtns = document.querySelectorAll(".main-btns");
 const mainArea = document.querySelector(".first-area");
 const questionArea = document.querySelector(".question-area");
+let makif = null
+
 let questionIndex = 0;
-
-
 console.log(firstBtns);
 
 
 function handleBtn(e) {
   e.preventDefault();
   const topic = e.target.innerHTML;
+  selectedTopic = topic;
 
   // if (cssTopic === "CSS") selectedQuiz = cssq;
   // else if (htmlTopic === "HTML") selectedQuiz = htmlq;
@@ -430,20 +435,31 @@ function handleBtn(e) {
   else if (topic === "Javascript") selectedQuiz = jsq;
   else if (topic === "Accessibility") selectedQuiz = accessq;
   questionIndex = 0;
+  const titles = document.querySelector('.txt');
+  const emptys = document.querySelector('.empty');
+  if(topic === 'HTML') {
+    titles.innerText = 'HTML';
+    titles.style.color = "orange";
+  }
+  if(topic === 'CSS') {
+    titles.innerText = 'CSS';
+    titles.style.color = "green";
+  }
+  if(topic === 'Javascript') {
+    titles.innerText = 'Javascript';
+    titles.style.color = "blue";
+  }
+  if(topic === 'Accessibility') {
+    titles.innerText = 'Accessibility';
+    titles.style.color = "purple";
+  }
+
   getQuestions();
 }
-
-// document.querySelectorAll("a").forEach((link) => {
-//     link.addEventListener("click", (e) => {
-//       e.preventDefault(); /
-//     });
-//   });
-
-
 function btnmove() {
   firstBtns.forEach((btn) => {
     btn.addEventListener("click", handleBtn);
-  });  
+  });
 }
 btnmove();
 
@@ -454,46 +470,47 @@ function getQuestions() {
   const currentQuestion = selectedQuiz[questionIndex];
     questionArea.innerHTML = `
      <p>Question <span id = "questionNumber">${questionIndex+1}</span> of 10</p>
-     
+
         <h3>${currentQuestion.question}</h3>
         <div class="progressBar">
           <div class="progressBarInner"></div>
         </div>
-        
+
         <div class="question-selection">
-          <span>A</span>
+          <span class = "bg">A</span>
           <a href="" class= "asd">${currentQuestion.options[0]}</a>
         </div>
 
         <div class="question-selection">
-          <span>B</span>
+          <span class = "bg">B</span>
           <a href="" class= "asd">${currentQuestion.options[1]}</a>
         </div>
 
         <div class="question-selection">
-          <span>C</span>
+          <span class = "bg">C</span>
           <a href="" class= "asd">${currentQuestion.options[2]}</a>
         </div>
 
         <div class="question-selection">
-          <span>D</span>
+          <span class = "bg">D</span>
           <a href="" class= "asd">${currentQuestion.options[3]}</a>
         </div>
 
         <button class="submit-btn">Submit Answer</button>
-        
+
     `
-    
+
         // const progressBar = document.querySelector('.progressBarInner');
         // let progress = 1;
         // progressBar.style.width = (progress * 10) + '%';
         // progressBar.style.width = '10';
         // progress++;
-        
-        
+
+
     mainArea.style.display = "none";
     questionArea.style.display = "block";
     selectedOption = null;
+   
 
     progressBar();
     selectOption();
@@ -501,61 +518,97 @@ function getQuestions() {
 
 }
 
+
+
 function selectOption() {
   const options = document.querySelectorAll(".asd");
-  for (const option of options) {
+  options.forEach((option) => {
     option.addEventListener("click", function (e) {
-        e.preventDefault();
-        selectedOption = e.target.innerText;
+      e.preventDefault();
+      selectedOption = e.target.innerText;
+
+      const questionSelections = document.querySelectorAll(".question-selection");
+      questionSelections.forEach((selection) => {
+        selection.classList.remove("border", "correct", "wrong");
+      });
+
+
+      const parentSelection = e.target.closest(".question-selection");
+      if (parentSelection) {
+        parentSelection.classList.add("border");
+      }
     });
-  }
+  });
 }
-
-
 
 function setupSubmit() {
   const submitBtn = document.querySelector(".submit-btn");
-  submitBtn.addEventListener("click", function(e)  {
+  submitBtn.addEventListener("click", function (e) {
     e.preventDefault();
 
     const correctAnswer = selectedQuiz[questionIndex].answer;
-    
+
+    const options = document.querySelectorAll(".asd");
+    options.forEach((option) => {
+      const parentSelection = option.closest(".question-selection");
+
+      if (option.innerText === correctAnswer) {
+        parentSelection.classList.add("correct");
+      }
+
+
+      if (selectedOption && option.innerText === selectedOption && selectedOption !== correctAnswer) {
+        parentSelection.classList.add("wrong");
+      }
+    });
+
+
     if (selectedOption === correctAnswer) {
       score++;
     }
+
     questionIndex++;
 
-    if (selectedOption === null) {
-        alert("Select an option to proceed");
-        return null;
-    }
 
     if (questionIndex < selectedQuiz.length) {
-      getQuestions(); 
+      setTimeout(getQuestions, 2000); 
     } else {
-      showResults(); 
+      setTimeout(showResults, 2000);
     }
   });
 }
 
+
 function showResults() {
+
+    let topicImage;
+  if (selectedTopic === "HTML") {
+    topicImage = "assets/images/html-icon.svg"; 
+  } else if (selectedTopic === "CSS") {
+    topicImage = "assets/images/css-icon.svg";
+  } else if (selectedTopic === "Javascript") {
+    topicImage = "assets/images/js-icon.svg";
+  } else if (selectedTopic === "Accessibility") {
+    topicImage = "assets/images/accessibility-icon.svg";
+  }
+
   questionArea.innerHTML = `
 
-    <div class="result-area">
-      <p class="result-p">Quiz completed</p>
-      <p class="result-strong"><strong>You scored...</strong></p>
-      <div class="result-point">
-        <div class="result-flex">
-          <img src="assets/images/accessibility-icon.svg">
-          <p class="end-title">Accessibility</p>
-        </div>
-        <h1 class="end-score">${score}</h1>
-        <span class="end-total">out of 10</span>
-      </div>
-      <a href="" class="end-btn">Play Again</a>
+<div class="result-area">
+    <p class="result-p">Quiz completed</p>
+    <p class="result-strong"><strong>You scored...</strong></p>
+    <div class="result-point">
+    <div class="result-flex">
+         <img src="${topicImage}">
+          <p class="end-title">${selectedTopic}</p>
     </div>
+    <h1 class="end-score">${score}</h1>
+    <span class="end-total">out of 10</span>
+    </div>
+    <a href="" class="end-btn">Play Again</a>
+</div>
   `;
-  
+
   const restartBtn = document.querySelector(".end-btn");
   restartBtn.addEventListener("click",function() {
     location.reload();
@@ -566,11 +619,14 @@ let progress = -1;
 function progressBar() {
     const progressBar = document.querySelector('.progressBarInner');
     progress += 10;
-    progressBar.style.width = progress + '%';  
+    progressBar.style.width = progress + '%';
 }
 
 
-    // for (const opt of options) {
-    //     opt.classList.remove("selected"); 
-    // }
-    // option.classList.add("selected");
+function switchTheme() {
+  switchBtn.addEventListener("click",function() {
+    document.querySelector("body").classList.toggle("dark-mode");
+  })
+}
+
+switchTheme();

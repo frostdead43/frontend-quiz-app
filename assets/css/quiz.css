@@ -376,7 +376,8 @@ a {
   }
 
   .bg {
-    color: white;
+    background-color: white;
+    color: rgba(98, 108, 127, 1);
   }
   
   .middle-section a {
@@ -386,6 +387,25 @@ a {
     color: rgba(171, 193, 225, 1);
   }
 
+  .question-selection {
+    background-color: rgba(59, 77, 102, 1);
+  }
+
+  .result-point {
+    background-color: rgba(59, 77, 102, 1);
+  }
+  .end-score {
+    color: white;
+  }
+  .end-total {
+    color: white;
+  }
+  .end-title {
+    color: white;
+  }
+  .result-p {
+    color: white;
+  }
 }
 
 

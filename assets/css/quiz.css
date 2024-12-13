@@ -243,7 +243,11 @@ a {
 }
 
 .bg {
-  border-radius: 15px;
+  border-radius: 7px;
+  /* font-size: 18px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center; */
 }
 
 .submit-btn {
@@ -435,6 +439,24 @@ a {
     color: white;
     &::before {
       content: "💩";
+    }
+  }
+
+  .correct {
+    border: 3px solid green;
+    border-radius: 15px;
+    .bg {
+      background-color: rgba(38, 215, 130, 1);
+      color: white;
+    }
+  }
+
+  .wrong {
+    border: 3px solid red;
+    border-radius: 15px;
+    .bg {
+      background-color:rgba(238, 84, 84, 1);
+      color: white;
     }
   }
 }

@@ -146,9 +146,8 @@ h2 {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding-block: 23px;
+  padding-block: 12px;
   padding-left: 18px;
-  width: 327px;
   border-radius: 24px;
 }
 
@@ -165,7 +164,6 @@ a {
 /* progress bar */
 
 .progressBar {
-  width: 300px;
   background-color: rgb(231, 214, 214);
   height: 10px;
   border-radius: 6px;
@@ -215,9 +213,8 @@ a {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding-block: 23px;
+  padding-block: 12px;
   padding-left: 18px;
-  width: 327px;
   margin-bottom: 12px;
   border-radius: 22px;
 }
@@ -256,7 +253,7 @@ a {
   border-radius: 12px;
   border: none;
   display: block;
-  width: 327px;
+  width: 100%;
 }
 
 .asd {
@@ -288,6 +285,7 @@ a {
   text-align: center;
   background-color: rgba(255, 255, 255, 1);
   padding: 32px;
+  border-radius: 24px;
 }
 
 .end-title {
@@ -327,7 +325,7 @@ a {
   background-color: rgba(167, 41, 245, 1);
   color: white;
   padding-block: 18px;
-  width: 327px;
+  width: 100%;
   font-size: 18px;
   font-weight: 500;
   line-height: 18px;
@@ -456,5 +454,82 @@ a {
     }
   }
 }
+
+@media(width >= 768px) {
+
+  .container {
+    padding-inline: 64px;
+  }
+
+  header {
+    margin-block: 40px 49px;
+    margin-inline: 64px;
+  }
+  .question-head {
+   width: 465px;
+  
+  h2 {
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 64px;
+
+  }
+  strong {
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 64px;
+  }
+  }
+  .result-area {
+    max-width: 640px;
+    margin-inline: auto;
+  }
+
+  .result-inner {
+    width: 465px;
+    margin-bottom: 64px;
+
+    p {
+      padding-top: 8px;
+    }
+  }
+  .result-point {
+    padding: 48px;
+  }  
+}
+
+
+@media(width >= 1440px) {
+    header {
+      margin-block: 98px;
+      margin-inline: 197px;
+    }
+
+    .first-area {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .middle-section {
+      width: 564px;
+      margin: auto;
+    }
+
+    .question-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .question-area {
+      margin-inline: 140px;
+    }
+    
+    .progressBar {
+     width: 465px;
+    }
+
+}
+
 
 

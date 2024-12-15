@@ -461,12 +461,15 @@ btnmove();
 function getQuestions() {
   const currentQuestion = selectedQuiz[questionIndex];
     questionArea.innerHTML = `
-     <p>Question <span id = "questionNumber">${questionIndex+1}</span> of 10</p>
-
+   <div class = "question-inner">
+     <div>
+    <p>Question <span id = "questionNumber">${questionIndex + 1}</span> of 10</p>
         <h3>${currentQuestion.question}</h3>
         <div class="progressBar">
           <div class="progressBarInner"></div>
         </div>
+        </div>
+       <div>
 
         <div class="question-selection">
           <span class = "bg">A</span>
@@ -601,6 +604,11 @@ function showResults() {
   questionArea.innerHTML = `
 
 <div class="result-area">
+    <div class = "result-inner">
+        <p class="result-p">Quiz completed</p>
+        <p class="result-strong"><strong>You scored...</strong></p>
+    </div>
+
     <p class="result-p">Quiz completed</p>
     <p class="result-strong"><strong>You scored...</strong></p>
     <div class="result-point">

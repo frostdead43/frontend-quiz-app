@@ -502,13 +502,14 @@ a {
 @media(width >= 1440px) {
     header {
       margin-block: 98px;
-      margin-inline: 197px;
+      margin-inline: 165px
     }
 
     .first-area {
       display: flex;
       align-items: center;
       justify-content: center;
+      gap: 131px;
     }
 
     .middle-section {
@@ -531,5 +532,12 @@ a {
 
 }
 
+@media (width >= 1900px) {
+ header {
+  justify-content: center;
+  margin-left: 1250px;
+ }
+  
+}
 
 

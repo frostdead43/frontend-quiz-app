@@ -13,11 +13,11 @@ let saveBtnClicked = false;
 let subject;
 
 for (const link of subjectLinks) {
-    link.addEventListener('click',getSubject);
+    link.addEventListener('click', getSubject);
 }
 
 
-function getSubject(e){
+function getSubject(e) {
     e.preventDefault()
     subject = this.id;
     subjectName = document.querySelector(`#${this.id} span`).textContent;
@@ -25,37 +25,37 @@ function getSubject(e){
     return getQuestions(subject);
 }
 
-function getQuestions(subject){
+function getQuestions(subject) {
     document.querySelector('.subject-heading').innerHTML =
-    `
+        `
     <img src="${subjectImg}"/> 
     <h2>${subjectName}</h2>
     `;
-    if(subject === "html"){
+    if (subject === "html") {
         return getJSONFilePath(subject);
-    }else if(subject === "css"){
+    } else if (subject === "css") {
         return getJSONFilePath(subject);
-    }else if(subject === "js"){
+    } else if (subject === "js") {
         return getJSONFilePath(subject);
-    }else if(subject === "accessibility"){
+    } else if (subject === "accessibility") {
         return getJSONFilePath(subject);
     }
 }
 
-function getJSONFilePath(subject){
+function getJSONFilePath(subject) {
     const jsonFilePath = `assets/json/${subject}.json`
     return createQuestions(jsonFilePath)
 }
 
 
-async function createQuestions(jsonFilePath){
+async function createQuestions(jsonFilePath) {
     const response = await fetch(`${jsonFilePath}`);
     const data = await response.json();
     return createRandomQuestions(data);
 }
 
-async function createRandomQuestions(data){
-    const randomQuestions = getRandomQuestions(data,10);
+async function createRandomQuestions(data) {
+    const randomQuestions = getRandomQuestions(data, 10);
     randomQuestionsArray.push(randomQuestions);
     return renderQuestions();
 }
@@ -66,27 +66,27 @@ function getRandomQuestions(allQuestions, numberOfQuestions) {
     return shuffledQuestions.slice(0, numberOfQuestions);
 }
 
-async function renderQuestions(){
+async function renderQuestions() {
 
-    
+
     for (const question of randomQuestionsArray[0].slice(currentQuestion - 1, currentQuestion)) {
         document.querySelector('.container-leftside').style.flexDirection = "row";
         containerRightSide.innerHTML = "";
         containerLeftSide.innerHTML = "";
-        containerLeftSide.innerHTML += 
-        `
+        containerLeftSide.innerHTML +=
+            `
         <div class="question-container">
             <div class="question-top">
                 <span class="small-text">${currentQuestion}.Soru /10 Soru</span>
                 <h3 class="question-text">${question.question}</h3>
             </div>
             <div class="progress-bar" style="margin-bottom:92px;">
-                <div class="progress-inline" style="width:${(currentQuestion*10)}%"></div>
+                <div class="progress-inline" style="width:${(currentQuestion * 10)}%"></div>
             </div>
         </div>
         `;
         containerRightSide.innerHTML +=
-        `
+            `
         <ul class="subject-list">
             <li class="subject-element">
                 <a href="#" class="subject-link option-btn" id="a">
@@ -123,11 +123,11 @@ async function renderQuestions(){
     }
 }
 
-function checkAnswer(question){
+function checkAnswer(question) {
     const saveBtn = document.querySelector('.save-btn');
     const optionBtns = document.querySelectorAll('.option-btn');
     for (const option of optionBtns) {
-        option.addEventListener('click', function(e) {
+        option.addEventListener('click', function (e) {
             e.preventDefault();
             for (const option of optionBtns) {
                 option.classList.remove('selected');
@@ -135,38 +135,38 @@ function checkAnswer(question){
             this.classList.add('selected');
         })
     }
-    saveBtn.addEventListener('click', function(){
-        if (!saveBtnClicked){
-            for(const option of optionBtns){
-                if(option.classList.contains('selected')){
+    saveBtn.addEventListener('click', function () {
+        if (!saveBtnClicked) {
+            for (const option of optionBtns) {
+                if (option.classList.contains('selected')) {
                     for (const option of optionBtns) {
                         option.style.pointerEvents = "none";
                     }
-                    if(option.id == question.correctAnswer){
+                    if (option.id == question.correctAnswer) {
                         option.innerHTML += `<img class="result-icon" src="assets/img/true-icon.svg" alt="">`
                         option.style.borderColor = "var(--green)";
                         option.firstElementChild.style.background = "var(--green)";
                         score++;
-                    }else{
+                    } else {
                         option.innerHTML += `<img class="result-icon" src="assets/img/false-icon.svg" alt="">`
                         option.style.borderColor = "var(--red)";
                         option.firstElementChild.style.background = "var(--red)";
-                        for (const option of optionBtns){
-                            if (option.id == question.correctAnswer){
+                        for (const option of optionBtns) {
+                            if (option.id == question.correctAnswer) {
                                 option.innerHTML += `<img class="result-icon" src="assets/img/true-icon.svg" alt="">`
                             }
                         }
                     }
-                }else{
-                    if (document.querySelectorAll('.option-btn.selected').length == 0){
+                } else {
+                    if (document.querySelectorAll('.option-btn.selected').length == 0) {
                         document.querySelector('.no-option-selected').style.display = "flex";
                         return;
                     }
                 }
             }
-            if(currentQuestion == 10){
+            if (currentQuestion == 10) {
                 this.textContent = "Quizi Bitir";
-            }else{
+            } else {
                 this.textContent = "Sonraki Soru";
             }
             this.classList.add('next');
@@ -177,12 +177,12 @@ function checkAnswer(question){
     });
 }
 
-function goNextQuestion(){
+function goNextQuestion() {
     const nextQuestionBtn = document.querySelector('.next');
-    nextQuestionBtn.addEventListener('click',function(){
-        if(currentQuestion == 10){
+    nextQuestionBtn.addEventListener('click', function () {
+        if (currentQuestion == 10) {
             return finishQuiz();
-        }else{
+        } else {
             currentQuestion++;
             saveBtnClicked = false;
             return renderQuestions();
@@ -190,16 +190,16 @@ function goNextQuestion(){
     })
 }
 
-function finishQuiz(){
-    containerLeftSide.innerHTML = 
-    `
+function finishQuiz() {
+    containerLeftSide.innerHTML =
+        `
     <div class="quiz-result-left-container">
         <span class="quiz-result-text">Quizi tamamladınız</span>
         <span class="quiz-result-text bold-text">Sonucunuz...</span>
     </div>
     `;
-    containerRightSide.innerHTML = 
-    `
+    containerRightSide.innerHTML =
+        `
     <div class="result-box">
         <div class="subject-heading">
             <img src="${subjectImg}"/> 
@@ -211,10 +211,10 @@ function finishQuiz(){
     <button id="replay" class="submit-btn">Yeniden Deneyin</div>
     `
     const replay = document.querySelector('#replay');
-    replay.addEventListener('click',restartQuiz);
+    replay.addEventListener('click', restartQuiz);
 }
 
-function restartQuiz(){
+function restartQuiz() {
     currentQuestion = 1;
     score = 0;
     randomQuestionsArray = [];
@@ -222,9 +222,9 @@ function restartQuiz(){
     return restartQuizSubject();
 }
 
-function restartQuizSubject(){
-    containerLeftSide.innerHTML = 
-    `
+function restartQuizSubject() {
+    containerLeftSide.innerHTML =
+        `
     <dialog id="restartModal" class="modal">
         <div class="modal-content">
             <ul class="subject-list">
@@ -263,7 +263,7 @@ function restartQuizSubject(){
     document.querySelector('#restartModal').showModal();
     const subjects = document.querySelectorAll('.router');
     for (const subjectLink of subjects) {
-        subjectLink.addEventListener('click',function(){
+        subjectLink.addEventListener('click', function () {
             subject = this.id;
             subjectName = document.querySelector(`#${this.id} span`).textContent;
             subjectImg = document.querySelector(`#${this.id} img`).src;

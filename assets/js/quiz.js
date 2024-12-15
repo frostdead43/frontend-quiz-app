@@ -170,16 +170,6 @@ const questionArray = {
                   ],
                   "answer": "To specify the stack order of an element"
               },
-              {
-                  "question": "What is the purpose of the z-index property in CSS?",
-                  "options": [
-                      "To count the number of elements",
-                      "To set the magnification level of an element",
-                      "To specify the stack order of an element",
-                      "To create a zoom effect"
-                  ],
-                  "answer": "To specify the stack order of an element"
-              }
           ]
       },
       {
@@ -609,8 +599,6 @@ function showResults() {
         <p class="result-strong"><strong>You scored...</strong></p>
     </div>
 
-    <p class="result-p">Quiz completed</p>
-    <p class="result-strong"><strong>You scored...</strong></p>
     <div class="result-point">
     <div class="result-flex">
          <img src="${topicImage}">
